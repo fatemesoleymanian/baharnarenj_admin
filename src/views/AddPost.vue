@@ -33,9 +33,9 @@
                   <h5 class="font-weight-bolder">عکس پست :</h5>
                 </div>
                 <div class="d-flex flex-row  w-50 mt-5 me-5">
-                  <vsud-button size="lg" color="success" variant="outline"
-                               data-bs-toggle="modal" data-bs-target="#staticBackdrop" v-if="!upload">تغییر عکس پست
-                  </vsud-button>
+<!--                  <vsud-button size="lg" color="success" variant="outline"-->
+<!--                               data-bs-toggle="modal" data-bs-target="#staticBackdrop" v-if="!upload">تغییر عکس پست-->
+<!--                  </vsud-button>-->
                 </div>
               </div>
               <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -53,10 +53,9 @@
                          width="500"
                          height="300"
                          class="w-100 position-relative z-index-2"
-                         :src="'https://api.photomimmarket.com/public'+imgshowpath"
+                         :src="'https://api.photomimmarket.com'+imgshowpath"
                          :alt="post.slug"
                     />
-                    <!-- :src="'https://api.photomimmarket.com/public'+imgshowpath"-->
                   </div>
                 </div>
               </div>
@@ -193,7 +192,7 @@ export default {
         slug: '',
       },
       tag: [],
-      imgshowpath:'/storage/',
+      imgshowpath:'/storage/app',
       upload: true,
       }
   },
@@ -206,51 +205,7 @@ export default {
     async create() {
       this.isCreating = true
       this.post.text = this.$refs.myQuillEditor.getHTML()
-      if (this.post.title.trim() === '') {
-        this.isCreating = false
-        return this.$notify({
-          title: "خطا",
-          text: " تیتر الزامیست!",
-          type: 'error',
-        });
 
-      }
-      if (this.post.image.trim() === '') {
-        this.isCreating = false
-        return this.$notify({
-          title: "خطا",
-          text: "عکس الزامیست!",
-          type: 'error',
-        });
-
-      }
-      if (this.post.tags.length === 0) {
-        this.isCreating = false
-        return this.$notify({
-          title: "خطا",
-          text: "حداقل یک تگ برای پست الزامیست!",
-          type: 'error',
-        });
-
-      }
-      if (this.post.text.trim() === '') {
-        this.isCreating = false
-        return this.$notify({
-          title: "خطا",
-          text: "متن پست الزامیست!",
-          type: 'error',
-        });
-
-      }
-      if (this.post.slug.trim() === '') {
-        this.isCreating = false
-        return this.$notify({
-          title: "خطا",
-          text: "نشانک پست الزامیست!",
-          type: 'error',
-        });
-
-      }
       let tags = [] ;
       for (let i in this.post.tags)
       {
@@ -263,7 +218,7 @@ export default {
         text: this.post.text,
         slug: this.post.slug
       }
-      const res = await HTTP.post('post/', data).catch(() => {
+      const res = await HTTP.post('post', data).catch(() => {
         this.isCreating = false
         return this.$notify({
           title: "عملیات ناموفق!",
@@ -341,7 +296,7 @@ export default {
 
       if (upload.status === 200) {
         this.post.image = upload.data.replace('/public/','');
-        this.imgshowpath = this.imgshowpath.concat(this.post.image)
+        this.imgshowpath = this.imgshowpath.concat(upload.data)
         this.$notify({
           title: "عملیات موفق!",
           text: "لطفا برای ثبت عکس روی ثبت تغییرات کلیک کنید. ",

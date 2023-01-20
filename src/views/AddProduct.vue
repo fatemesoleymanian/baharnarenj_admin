@@ -51,7 +51,7 @@
                          width="500"
                          height="300"
                          class="w-100 position-relative z-index-2"
-                         :src="'https://api.photomimmarket.com/public'+imgshowpath"
+                         :src="'https://api.photomimmarket.com'+imgshowpath"
                          :alt="product.name"
                     />
                   </div>
@@ -203,7 +203,7 @@ export default {
         origins:'',
         price:'',
       },
-      imgshowpath:'/storage/',
+      imgshowpath:'/storage/app',
       categories:[],
       category:'',
       upload:true,
@@ -260,7 +260,7 @@ export default {
         price : this.product.price,
         slug : this.product.slug
       }
-      const res = await HTTP.post( '/product/', data);
+      const res = await HTTP.post( '/product', data);
       if(res.status===200){
         this.$notify({
           title: "عملیات موفق!",
@@ -328,7 +328,7 @@ export default {
       if (upload.status === 200)
       {
         this.product.image = upload.data.replace('/public/','');
-        this.imgshowpath = this.imgshowpath.concat(this.product.image)
+        this.imgshowpath = this.imgshowpath.concat(upload.data)
         this.$notify({
           title: "عملیات موفق!",
           text: "لطفا برای ثبت عکس روی ثبت تغییرات کلیک کنید. ",
@@ -350,15 +350,7 @@ export default {
   },
   mounted()
   {
-    // console.log('this is current quill instance object', this.editor)
-    // const permissions = JSON.parse(localStorage.getItem('rgtokuukqp'));
-    // for (let i in permissions)
-    // {
-    //   if (permissions[i].module.name === 'محصولات'){
-    //     if (permissions[i].create === 0) return window.location = '/'
-    //   }
-    // }
-    // if (!localStorage.getItem('vqmgp')) window.location = '/sign-in';
+    if (!localStorage.getItem('vqmgp')) window.location = '/sign-in';
   },
   computed: {
     editor() {

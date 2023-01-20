@@ -52,10 +52,9 @@
                          width="500"
                          height="300"
                          class="w-100 position-relative z-index-2"
-                          :src="'https://api.photomimmarket.com/public'+imgshowpath"
+                          :src="'https://api.photomimmarket.com'+imgshowpath"
                          :alt="post.slug"
                     />
-                    <!-- :src="'https://api.photomimmarket.com/public'+imgshowpath"-->
 
                   </div>
                 </div>
@@ -244,53 +243,6 @@ export default {
         tags.push(this.post.tags[i].title)
       }
        this.post.text = this.$refs.myQuillEditor.getHTML();
-      // if(this.post.title.trim() === '') {
-      //   this.isCreating = false
-      //   return  this.$notify({
-      //     title: "خطا",
-      //     text: " تیتر الزامیست!",
-      //     type: 'error',
-      //   });
-      //
-      // }
-      // if(this.post.image.trim() === '') {
-      //   this.isCreating = false
-      //   return  this.$notify({
-      //     title: "خطا",
-      //     text: "عکس الزامیست!",
-      //     type: 'error',
-      //   });
-      //
-      // }
-      //
-      // if(this.tag.length === 0) {
-      //   this.isCreating = false
-      //   return  this.$notify({
-      //     title: "خطا",
-      //     text: "حداقل یک تگ برای پست الزامیست!",
-      //     type: 'error',
-      //   });
-      //
-      // }
-      // if (this.post.text.trim() === '') {
-      //   this.isCreating = false
-      //   return  this.$notify({
-      //     title: "خطا",
-      //     text: "متن پست الزامیست!",
-      //     type: 'error',
-      //   });
-      //
-      // }
-      //
-      // if (this.post.slug.trim() === '') {
-      //   this.isCreating = false
-      //   return  this.$notify({
-      //     title: "خطا",
-      //     text: "نشانک پست الزامیست!",
-      //     type: 'error',
-      //   });
-      //
-      // }
       this.post.image = this.post.image.replace('/storage/','');
 
       const updated_data = {
@@ -372,7 +324,7 @@ export default {
       if (upload.status === 200)
       {
         this.post.image = upload.data.replace('/public/','');
-        this.imgshowpath = '/storage/'.concat(this.post.image)
+        this.imgshowpath = '/storage/app'.concat(upload.data)
         this.$notify({
           title: "عملیات موفق!",
           text: "لطفا برای ثبت عکس روی ثبت تغییرات کلیک کنید. ",

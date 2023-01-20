@@ -53,7 +53,7 @@
                         width="500"
                         height="300"
                         class="w-100 position-relative z-index-2"
-                        :src="'https://api.photomimmarket.com/public'+imgshowpath"
+                        :src="'https://api.photomimmarket.com'+imgshowpath"
                         :alt="product.name"
                     />
                   </div>
@@ -251,9 +251,6 @@ export default {
   methods:{
 
     onEditorBlur(quill) {
-
-      // this.product.description = quill.value.innerHTML
-      // this.product.description = quill.value.innerHTML
       console.log(quill.value.innerHTML)
     },
     async update(){
@@ -278,13 +275,6 @@ export default {
         });
 
       }
-      // if(this.category === '') {
-      //   this.isCreating = false
-      //   return  this.$notify({
-      //     title: "خطا",
-      //     text: "دسته بندی محصول الزامیست!",
-      //     type: 'error',
-      //   });
 
       const updated_data = {
         name:this.product.name,
@@ -357,7 +347,7 @@ export default {
       if (upload.status === 200)
       {
         this.product.image = upload.data.replace('/public/','');
-        this.imgshowpath = '/storage/'.concat(this.product.image)
+        this.imgshowpath = '/storage/app'.concat(upload.data)
 
         this.$notify({
           title: "عملیات موفق!",

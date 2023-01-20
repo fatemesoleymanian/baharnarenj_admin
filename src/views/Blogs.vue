@@ -57,7 +57,7 @@
               <div class="d-flex  py-1">
                 <div >
                   <vsud-avatar
-                      :img="'https://api.photomimmarket.com/public'+u.image"
+                      :img="'https://api.photomimmarket.com'+u.image"
                       size="sm"
                       border-radius="md"
                       class="mx-2"
