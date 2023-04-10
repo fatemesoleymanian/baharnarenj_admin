@@ -24,7 +24,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
     "@kyvg/vue3-notification": "^2.3.4",
-    "@popperjs/core": "2.10.2",
+    "@popperjs/core": "2.11.6",
     "@vueup/vue-quill": "^1.0.0-beta.8",
     "axios": "^0.27.2",
     "bootstrap": "5.1.3",
